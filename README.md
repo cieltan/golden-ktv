@@ -18,11 +18,22 @@ Hello! Welcome to Golden-KTV, a fullstack application for karaoke lovers! Our ap
 ├── .github
 ├── client
 │   ├── components
+│       ├── BottomBar.jsx
+│       ├── ChatBox.jsx
+│       ├── PlayerButton.jsx
+│       ├── Room.jsx
+│       ├── RoomForm.jsx
+│       ├── StartBtn.jsx
+│       ├── TokBox.jsx
+│       ├── UserList.jsx
+│       ├── VideoPlayer.jsx
+│       ├── VideoQueue.jsx
+│       └── VideoSearchBar.jsx
 │   ├── store
 │       ├── index.js
 │       ├── roomReducer.js
 │       ├── user.js
-│       ├── user.spec.js
+│       └── user.spec.js
 │   ├── app.js
 │   ├── history.js
 │   ├── index.js
@@ -38,6 +49,11 @@ Hello! Welcome to Golden-KTV, a fullstack application for karaoke lovers! Our ap
 │   └── seed.spec.js
 ├── server
 │   ├── api
+        ├── index.js
+        ├── room.js
+        ├── users.js
+        ├── users.spec.js
+│       └── youtubeapi.js
 │   ├── auth
 │   ├── db
 │   ├── socket
