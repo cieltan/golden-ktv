@@ -4,6 +4,8 @@
 
 Hello! Welcome to Golden-KTV, a fullstack application for karaoke lovers! Our application was built with React, Redux, Node, Express, PostgresSQL, Sequelize, OpenTok API, Socket.io, and Youtube Data API.
 
+Visit our deployed site at: [Golden-Karaoke](https://golden-karaoke.herokuapp.com/)
+
 ## Developers
 
 - [Billy Tan](https://github.com/cieltan)
