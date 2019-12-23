@@ -5,12 +5,7 @@
 }
 
 body {
-  /* background-color: rgba(1, 1, 1, 0.5); */
-  /* background-color: black; */
   font-family: 'new-led';
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
   align-items: center;
   height: 100vh;
   transition: background-color 300ms ease-in-out;
@@ -75,7 +70,6 @@ input[type='text'] {
 }
 
 html {
-  /* background-color: purple; */
   background-image: url('./images/golden-ktv-bg.jpg');
   background-attachment: fixed;
   background-position: center;

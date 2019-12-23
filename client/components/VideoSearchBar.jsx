@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import VideoPlayer from './VideoPlayer'
 import axios from 'axios'
 import socket from '../socket'
@@ -33,7 +33,7 @@ class VideoSearchBar extends Component {
     //TODO:Possibly adding socket.id to state as userId
     socket.on('welcome', (data, time) => {
       if (data) {
-        this.setState({videoData: data, curTime: time})
+        this.setState({ videoData: data, curTime: time })
       }
     })
     // STEP ONE: EMIT SUCCESSFUL VISIT TO THE ROOM
@@ -41,24 +41,24 @@ class VideoSearchBar extends Component {
     //should you need to update the queue due to a song ending, it should reset the time for others too
     socket.on('update', (data, msg, userArr) => {
       if (data) {
-        this.setState({videoData: data})
+        this.setState({ videoData: data })
       }
       if (msg) {
-        this.setState({curTime: null})
+        this.setState({ curTime: null })
       }
       if (userArr) {
-        this.setState({users: userArr})
+        this.setState({ users: userArr })
       }
     })
     socket.on('you are the host', () => {
-      this.setState({isHost: true})
+      this.setState({ isHost: true })
     })
     //setting userId( aka socket.id) only if your userId has not been set
     socket.on('send id', (id, usersArr) => {
       if (!this.state.userId) {
-        this.setState({userId: id})
+        this.setState({ userId: id })
       }
-      this.setState({users: usersArr})
+      this.setState({ users: usersArr })
     })
   }
   componentWillUnmount() {
@@ -85,25 +85,21 @@ class VideoSearchBar extends Component {
   // Obtains the videoId and resets this.state.videoId
   async handleSearch() {
     const KEY = await axios.get('/api/youtubeapi')
-    const youtube = await axios.create({
+    //Axios 0.19 does not allow create to have params
+    let youtube = await axios.create({
       baseURL: 'https://www.googleapis.com/youtube/v3',
-      params: {
-        part: 'snippet',
-        maxResults: 5,
-        key: KEY.data
-      }
     })
     //only allow search when you have filled in the searchword
     if (this.state.searchWords) {
-      const {data} = await youtube.get('/search', {
+      const { data } = await youtube.get('/search', {
         params: {
+          part: 'snippet',
+          maxResults: 5,
+          key: KEY.data,
           q: this.state.searchWords + ` karaoke -karafun -singkingkaraoke`
         }
-      })
-      // Uncomment to check how the data looks like from Youtube API
-      // console.log(data)
-
-      // Filters out the videos without a videoId
+      }
+      )
       const videoItems = data.items.filter(video => video.id.videoId)
 
       this.setState({
@@ -122,7 +118,7 @@ class VideoSearchBar extends Component {
     }
     console.log(this.state.userId)
     await this.setState(state => {
-      return {videoData: [...state.videoData, newQueueItem]}
+      return { videoData: [...state.videoData, newQueueItem] }
     })
 
     this.setState({
