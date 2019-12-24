@@ -1,29 +1,27 @@
 import React, {Component} from 'react'
-import ReactDOM from 'react-dom'
 import {withRouter} from 'react-router-dom'
+import styled from 'styled-components'
+
+const Start = styled.button`
+  grid-column: 2/3;
+  justify-self: center;
+  transform: translateY(45rem);
+`
 
 class StartBtn extends Component {
   onClick = () => {
-    const body = ReactDOM.findDOMNode(app)
-    this.start.style.opacity = 0
-    body.parentNode.style.backgroundColor = 'rgba(1, 1, 1, 0.5)'
-    setTimeout(() => {
-      this.props.history.push('/guest')
-    }, 400)
+    this.props.history.push('/guest')
   }
   render() {
     return (
-      <input
-        style={{marginLeft: '43vw'}}
-        ref={e => {
-          this.start = e
-        }}
+      <Start
         onClick={this.onClick}
         type="button"
-        value="START NOW"
         className="button is-primary is-warning is-large"
         id="start"
-      />
+      >
+        START NOW
+      </Start>
     )
   }
 }

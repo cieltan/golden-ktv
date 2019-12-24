@@ -14,11 +14,7 @@ class Room extends Component {
 
   render() {
     const {room} = this.props
-    return (
-      <div>
-        <VideoSearchBar room={room.roomNum} name={room.name} />
-      </div>
-    )
+    return <VideoSearchBar room={room.roomNum} name={room.name} />
   }
 }
 

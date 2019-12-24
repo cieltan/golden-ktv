@@ -1,13 +1,19 @@
 import React from 'react'
+import styled from 'styled-components'
 
+const BottomBarContainer = styled.div`
+  color: inherit;
+  grid-column: 2/3;
+  justify-self: center;
+  align-self: center;
+`
 const BottomBar = () => {
   return (
-    <div id="bottom-bar">
+    <BottomBarContainer>
       <a href="https://github.com/cieltan/golden-ktv">
-        CHECK OUT OUR SOURCE CODE:
-        <img src="/images/github.png" />
+        CHECK OUT OUR SOURCE CODE.
       </a>
-    </div>
+    </BottomBarContainer>
   )
 }
 

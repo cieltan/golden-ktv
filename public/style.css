@@ -4,11 +4,10 @@
   font-weight: 400;
 }
 
-body {
-  font-family: 'new-led';
-  align-items: center;
-  height: 100vh;
-  transition: background-color 300ms ease-in-out;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 div {
@@ -228,13 +227,13 @@ html {
   height: 100%; */
 }
 
-#start {
+/* #start {
   transition: opacity 300ms ease-in-out;
   margin: 0;
   position: fixed;
   top: 85vh;
   margin-left: 45vw !important;
-}
+} */
 
 .center-form {
   opacity: 0;
