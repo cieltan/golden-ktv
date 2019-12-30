@@ -10,7 +10,6 @@ const Body = styled.div`
   display: grid;
   position: relative;
   grid-template-columns: 300px minmax(min-content, 1fr) 300px;
-  transition: background-color 300ms ease-in-out;
 `
 
 const App = () => {

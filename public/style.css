@@ -77,13 +77,6 @@ html {
   height: 100%;
 }
 
-::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  font-family: 'new-led', monospace;
-  color: #000000;
-  opacity: 1; /* Firefox */
-}
-
 .roomForm {
   font-family: 'new-led', monospace;
   display: flex;

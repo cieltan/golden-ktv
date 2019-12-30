@@ -1,6 +1,20 @@
 import React, {Component} from 'react'
 import socket from '../socket'
 import {connect} from 'react-redux'
+import styled from 'styled-components'
+
+const ChatBoxContainer = styled.div`
+  h2 {
+    text-align: center;
+  }
+
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-family: 'new-led', monospace;
+    color: black;
+    opacity: 1; /* Firefox */
+  }
+`
 
 class ChatBox extends Component {
   constructor(props) {
@@ -41,7 +55,6 @@ class ChatBox extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    //prevent submitting empty msg
     if (this.state.msg) {
       const {name} = this.props.credentials
       socket.emit('new message', this.state.msg, name)
@@ -68,8 +81,8 @@ class ChatBox extends Component {
 
   render() {
     return (
-      <div className="chat-box">
-        <h2 align="center">CHATROOM</h2>
+      <ChatBoxContainer>
+        <h2>CHATROOM</h2>
         <div className="message-box" ref={this.boxRef}>
           {this.renderMessages(this.state.displayMsg)}
         </div>
@@ -79,14 +92,14 @@ class ChatBox extends Component {
             type="text"
             ref={this.msgRef}
             className="input"
-            placeholder="Say hello!"
+            placeholder="Say hello"
             value={this.state.msg}
             onChange={this.handleChange}
           />
 
           <input className="button is-warning" type="submit" />
         </form>
-      </div>
+      </ChatBoxContainer>
     )
   }
 }
