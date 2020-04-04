@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
+const sslRedirect = require('heroku-ssl-redirect')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./db')
 const sessionStore = new SequelizeStore({db})
@@ -37,7 +38,6 @@ passport.deserializeUser(async (id, done) => {
 const createApp = () => {
   // logging middleware
   app.use(morgan('dev'))
-
   // body parsing middleware
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
@@ -59,6 +59,9 @@ const createApp = () => {
   )
   app.use(passport.initialize())
   app.use(passport.session())
+
+  //HTTPS Redirect
+  app.use(sslRedirect())
 
   // auth and api routes
   app.use('/auth', require('./auth'))

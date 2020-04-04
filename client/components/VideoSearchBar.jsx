@@ -32,9 +32,7 @@ class VideoSearchBar extends Component {
     //STEP FOUR: Now the welcome is finally set.
     //TODO:Possibly adding socket.id to state as userId
     socket.on('welcome', (data, time) => {
-      if (data) {
-        this.setState({videoData: data, curTime: time})
-      }
+      if (data) this.setState({videoData: data, curTime: time})
     })
     // STEP ONE: EMIT SUCCESSFUL VISIT TO THE ROOM
     socket.emit('success', this.props.room)
@@ -49,9 +47,8 @@ class VideoSearchBar extends Component {
     })
     //setting userId( aka socket.id) only if your userId has not been set
     socket.on('send id', (id, usersArr) => {
-      if (!this.state.userId) {
-        this.setState({userId: id})
-      }
+      if (!this.state.userId) this.setState({userId: id})
+
       this.setState({users: usersArr})
     })
   }

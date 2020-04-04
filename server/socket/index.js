@@ -114,12 +114,8 @@ module.exports = io => {
       if (!rooms[roomNumber].playTime) {
         rooms[roomNumber].playTime = time
         rooms[roomNumber].curData = data
-        // socket.to(roomNumber).emit('playing')
       }
       socket.to(roomNumber).emit('playing')
-      // else {
-      //   socket.to(socket.id).emit('playing', rooms[roomNumber].curData)
-      // }
     })
 
     socket.on('end', (data, roomNumber) => {
