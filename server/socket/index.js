@@ -26,12 +26,6 @@ module.exports = io => {
             const newHostIdx = Math.floor(
               Math.random() * rooms[socket.room].user.length
             )
-            console.log(socket.room, 'refresh', rooms[socket.room].user)
-            console.log(
-              'refresh',
-              'new host',
-              rooms[socket.room].user[newHostIdx]
-            )
             io.to(socket.room).emit('new host', newHostIdx)
           }
 
@@ -61,18 +55,11 @@ module.exports = io => {
 
       // Initialize user array or add to the array
       rooms[roomNumber].user = (rooms[roomNumber].user || []).concat(name)
-      console.log('join room', rooms[roomNumber].user.length)
 
       //tell others in the room that someone just joined in
       setTimeout(() => {
-        console.log(socket.id)
-        // io.in(roomNumber).emit('send id', socket.id, rooms[roomNumber].user)
         socket.to(roomNumber).emit('send id', socket.id, rooms[roomNumber].user)
       }, 500)
-
-      // socket.emit('send id', socket.id, rooms[roomNumber].user)
-      // socket.join(roomNumber)
-      // socket.emit('success', roomNumber)
 
       // Socket is now connected to the specific roomNumber
       socket.join(roomNumber).emit('success', roomNumber)
@@ -83,13 +70,11 @@ module.exports = io => {
       const newUser = socket.id
       //STEP THREE: Now emit back the welcome socket.
       if (socket.room) {
-        io
-          .to(newUser)
-          .emit(
-            'welcome',
-            rooms[roomNumber].curData,
-            rooms[roomNumber].playTime ? rooms[roomNumber].playTime : null
-          )
+        io.to(newUser).emit(
+          'welcome',
+          rooms[roomNumber].curData,
+          rooms[roomNumber].playTime ? rooms[roomNumber].playTime : null
+        )
       }
     })
     //Listen for queue added, tell others to update

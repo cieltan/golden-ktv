@@ -37,8 +37,8 @@ const PlayerButton = props => {
         type="button"
         className="button is-warning"
         onClick={() => {
-          /*only let you play if there is nothing on the queue or if you are the host or its your turn to play*/
-          console.log('inside play btn', !props.data.length || allowPlay)
+          //Only let you play if there is nothing on the queue or if you are the host or its your turn to play
+
           if (!props.data.length || allowPlay) {
             props.player.getInternalPlayer().playVideo()
           }
