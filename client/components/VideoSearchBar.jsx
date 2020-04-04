@@ -21,7 +21,6 @@ class VideoSearchBar extends Component {
       curTime: null,
       userId: '',
       isHost: false,
-      //we are not utilizing usersarr for now
       users: []
     }
     this.handleChange = this.handleChange.bind(this)
@@ -30,7 +29,6 @@ class VideoSearchBar extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {
-    // socket.on('playing', data => this.setState({videoData: data}))
     //STEP FOUR: Now the welcome is finally set.
     //TODO:Possibly adding socket.id to state as userId
     socket.on('welcome', (data, time) => {
@@ -42,17 +40,11 @@ class VideoSearchBar extends Component {
     socket.emit('success', this.props.room)
     //should you need to update the queue due to a song ending, it should reset the time for others too
     socket.on('update', (data, msg, userArr) => {
-      if (data) {
-        this.setState({videoData: data})
-      }
-      if (msg) {
-        this.setState({curTime: null})
-      }
-      if (userArr) {
-        this.setState({users: userArr})
-      }
+      if (data) this.setState({videoData: data})
+      if (msg) this.setState({curTime: null})
+      if (userArr) this.setState({users: userArr})
     })
-    socket.on('you are the host', () => {
+    socket.on('roomHost', () => {
       this.setState({isHost: true})
     })
     //setting userId( aka socket.id) only if your userId has not been set
@@ -67,7 +59,6 @@ class VideoSearchBar extends Component {
     socket.removeAllListeners()
   }
   handleSkipEnd() {
-    //changed this to be a callback because VSCode was complaining
     this.setState(prevState => ({
       videoData: prevState.videoData.slice(1),
       curTime: null
@@ -117,7 +108,6 @@ class VideoSearchBar extends Component {
       img: video.snippet.thumbnails.default.url,
       userId: this.state.userId
     }
-    console.log(this.state.userId)
     await this.setState(state => {
       return {videoData: [...state.videoData, newQueueItem]}
     })
@@ -171,7 +161,6 @@ class VideoSearchBar extends Component {
         </div>
 
         <div id="right-sidebar">
-          {/* <UserList isHost={this.state.isHost} users={this.state.users} /> */}
           <Tokbox />
           <ChatBox />
         </div>

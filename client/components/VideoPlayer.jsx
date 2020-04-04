@@ -40,8 +40,9 @@ class VideoPlayer extends Component {
   onSkip = () => {
     const isMyTurn =
       (this.props.data[0] && this.props.data[0].userId) === this.props.userId
-    console.log('on skip', isMyTurn)
+
     //skipping to the next song only if it your turn or you are the host
+
     if (isMyTurn || this.props.isHost) {
       if (this.player.getInternalPlayer().getPlayerState() === 1) {
         this.player.seekTo(this.player.getDuration() - 1)

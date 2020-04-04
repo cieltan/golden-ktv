@@ -1,6 +1,7 @@
 module.exports = io => {
-  // let connections = []
-  // let users = []
+  /* let connections = []
+     let users = []
+  */
   let rooms = {}
 
   io.on('connection', socket => {
@@ -50,7 +51,7 @@ module.exports = io => {
         rooms[roomNumber] = {}
         //indicate you are the host
         //socket.host = true
-        socket.emit('you are the host')
+        socket.emit('roomHost')
       }
 
       // Initialize user array or add to the array
