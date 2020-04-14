@@ -6,6 +6,8 @@ import axios from 'axios'
 import {auth} from '../store'
 import ReactDOM from 'react-dom'
 
+const modal = document.getElementById('modal')
+
 class RoomForm extends Component {
   constructor(props) {
     super(props)
@@ -19,6 +21,12 @@ class RoomForm extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.el = document.createElement('div')
+    modal.appendChild(this.el)
+  }
+
+  componentWillUnmount() {
+    modal.removeChild(this.el)
   }
 
   handleChange(event) {
@@ -28,11 +36,14 @@ class RoomForm extends Component {
     setTimeout(() => {
       this.div.style.opacity = 1
     }, 100)
+    const node = document.getElementById('modal')
+    console.log(node.parentNode)
+    node.parentNode.style.backgroundColor = 'rgba(0, 0, 0, 0.7)'
   }
 
   onClick = () => {
-    const body = ReactDOM.findDOMNode(app)
-    body.parentNode.style.backgroundColor = ''
+    const node = document.getElementById('modal')
+    node.parentNode.style.backgroundColor = ''
   }
 
   async handleSubmit(event) {
@@ -76,7 +87,7 @@ class RoomForm extends Component {
   }
 
   render() {
-    return (
+    return ReactDOM.createPortal(
       <div
         className="center-form"
         ref={e => (this.div = e)}
@@ -156,7 +167,8 @@ class RoomForm extends Component {
           </div>
           <div className="wrap">{this.state.err}</div>
         </div>
-      </div>
+      </div>,
+      this.el
     )
   }
 }

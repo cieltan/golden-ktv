@@ -60,6 +60,11 @@ input[type='text'] {
   font-family: 'new-led', monospace;
 }
 
+body {
+  height: 100%;
+  width: 100%;
+}
+
 .messages-wrapper {
   font-size: 10px;
   color: #000000;
